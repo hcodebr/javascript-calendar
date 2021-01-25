@@ -1,17 +1,16 @@
-import { prevMonth, nextMonth, getCurrentMonth, format, startOfWeek, startOfMonth, endOfMonth, endOfWeek, addDay } from "./functions.js";
+import { format, startOfWeek, startOfMonth, addDays, subMonths, addMonths } from "./node_modules/date-fns/esm/index.js";
+import { getCurrentMonth } from "./functions.js";
 
 const currentMonth = getCurrentMonth();
-
-    console.log(currentMonth);
 
 const headerElement = document.querySelector("header");
 const tbodyElement = document.querySelector("tbody");
 
 headerElement.innerHTML = `
 
-    <a href="?month=${format(prevMonth(currentMonth))}">Anterior</a>
-    <h1>${currentMonth.toLocaleString('default', {month: 'long'})}</h1>
-    <a href="?month=${format(nextMonth(currentMonth))}">Próximo</a>
+    <a href="?month=${format(subMonths(currentMonth, 1), 'Y-M-d')}">Anterior</a>
+    <h1>${currentMonth.toLocaleString('default', {month: 'long'})} ${currentMonth.getFullYear()}</h1>
+    <a href="?month=${format(addMonths(currentMonth, 1), 'Y-M-d')}">Próximo</a>
 
 `;
 
@@ -33,7 +32,7 @@ for (let row = 0; row < 6; row++) {
 
         tr.append(td);
 
-        startDate = addDay(startDate);
+        startDate = addDays(startDate, 1);
 
     }
 
