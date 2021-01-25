@@ -24,9 +24,9 @@ for (let row = 0; row < 6; row++) {
 
         const td = document.createElement("td");
 
-        td.innerHTML = startDate.getDate();
+        td.innerHTML = format(startDate, 'd');
 
-        if (currentMonth.getFullYear() !== startDate.getFullYear() || currentMonth.getMonth() !== startDate.getMonth()) {
+        if (format(currentMonth, 'Y-M') !== format(startDate, 'Y-M')) {
             td.classList.add('other-month');
         }
 
