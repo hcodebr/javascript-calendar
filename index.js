@@ -1,17 +1,15 @@
-import { prevMonth, nextMonth, getCurrentMonth, format, startOfWeek, startOfMonth, endOfMonth, endOfWeek, addDay } from "./functions.js";
+import { prevMonth, nextMonth, getCurrentMonth, formatDate, startOfWeek, startOfMonth, addDay } from "./functions.js";
 
 const currentMonth = getCurrentMonth();
-
-    console.log(currentMonth);
 
 const headerElement = document.querySelector("header");
 const tbodyElement = document.querySelector("tbody");
 
 headerElement.innerHTML = `
 
-    <a href="?month=${format(prevMonth(currentMonth))}">Anterior</a>
+    <a href="?month=${formatDate(prevMonth(currentMonth))}">Anterior</a>
     <h1>${currentMonth.toLocaleString('default', {month: 'long'})}</h1>
-    <a href="?month=${format(nextMonth(currentMonth))}">Próximo</a>
+    <a href="?month=${formatDate(nextMonth(currentMonth))}">Próximo</a>
 
 `;
 

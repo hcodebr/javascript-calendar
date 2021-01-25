@@ -1,3 +1,20 @@
+export function getCurrentMonth() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const month = urlParams.get('month');
+
+    if (month) {
+
+        return new Date(month);
+
+    } else {
+
+        return new Date();
+
+    }
+
+}
+
 export function prevMonth(date) {
 
     const dayOfMonth = date.getDate();
@@ -28,24 +45,7 @@ export function nextMonth(date) {
 
 }
 
-export function getCurrentMonth() {
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const month = urlParams.get('month');
-
-    if (month) {
-
-        return new Date(month);
-
-    } else {
-
-        return new Date();
-
-    }
-
-}
-
-export function format(date) {
+export function formatDate(date) {
 
     return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 
@@ -70,31 +70,6 @@ export function startOfWeek(date) {
     const diff = day - weekStartsOn;
     
     resultDate.setDate(resultDate.getDate() - diff);
-    resultDate.setHours(0, 0, 0, 0);
-
-    return resultDate;
-
-}
-
-export function endOfMonth(date) {
-
-    const resultDate = new Date(date.getTime());
-    const month = resultDate.getMonth();
-
-    resultDate.setFullYear(resultDate.getFullYear(), month + 1, 0);
-    resultDate.setHours(23, 59, 59, 999);
-    return resultDate;
-
-}
-
-export function endOfWeek(date) {
-
-    const resultDate = new Date(date.getTime());
-    const day = date.getDay();
-    const weekEndsOn = 6;
-    const diff = weekEndsOn - day;
-    
-    resultDate.setDate(resultDate.getDate() + diff);
     resultDate.setHours(0, 0, 0, 0);
 
     return resultDate;
